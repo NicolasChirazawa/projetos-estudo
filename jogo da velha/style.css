@@ -1,0 +1,183 @@
+body {
+    margin: 0px;
+    background-color: #317379;
+
+    font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+
+    margin: 20px 0 0 0;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+main > div#primeira_parte {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+main > div#segunda_parte {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+main > div#terceira_parte {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Mexendo com o CSS da tabela */
+table {
+    border-collapse: collapse; /* Junta as bordas */
+    margin-top: 50px;
+
+    justify-content: center;
+}
+
+td{
+    padding: 0;
+}
+
+.esquerda {
+    border-right: 2vw solid white;
+}
+
+.direita {
+    border-left: 2vw solid white;
+}
+
+.cima {
+    border-bottom: 2vw solid white;
+}
+
+.baixo {
+    border-top: 2vw solid white;
+}
+
+/* Finalizado o CSS da tabela */
+
+#contador{
+    background-color: #ffffff;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+div#contador > p {
+    font-weight: bolder;
+    font-size: 20px;
+    color: #317379;
+}
+
+#frase {
+    color: white;
+    text-align: center;
+
+    margin-top: 40px;
+}
+
+p.teste {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    margin:0;
+}
+
+/* Responsividade */
+
+@media (min-width: 300px) {
+    td{
+        width: 100px;
+        height: 100px;
+    }
+    p.teste{
+        font-size: 40px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    #frase {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 600px) {
+    td {
+        width: 120px;
+        height: 120px;
+    }
+    p.teste{
+        font-size: 50px;
+    }
+    h1 {
+        font-size: 50px;
+    }
+    #frase {
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 900px) {
+    td {
+        width: 120px;
+        height: 120px;
+    }
+    p.teste{
+        font-size: 60px;
+    }
+    h1 {
+        font-size: 60px;
+    }
+    #frase {
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 1200px) {
+    td {
+        width: 175px;
+        height: 175px;
+    }
+    p.teste{
+        font-size: 70px;
+    }
+    h1 {
+        font-size: 80px;
+    }
+    #frase {
+        font-size: 50px;
+    }
+}
+
+.botaoEstilo {
+   cursor: pointer;
+   
+    margin: 30px auto 0 auto;
+    display: block;
+
+    font-size: 20px;
+    background-color: #ffffff;
+    color: #317379;
+    border-radius: 10px;
+
+    padding: 8px;
+    border: 0;
+}
