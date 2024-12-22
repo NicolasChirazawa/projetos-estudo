@@ -9,14 +9,19 @@ h1 {
     color: white;
     text-align: center;
 
-    margin: 20px 0 0 0;
+    margin: 20px 0 50px 0;
 }
 
-main{
+main {
     display: flex;
+
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-evenly;
+}
+
+main > div {
+    margin: 10px;
 }
 
 main > div#primeira_parte {
@@ -32,16 +37,15 @@ main > div#segunda_parte {
 }
 
 main > div#terceira_parte {
-    width: 25%;
     display: flex;
     justify-content: center;
+    
+    width: 25%;
 }
 
 /* Mexendo com o CSS da tabela */
 table {
     border-collapse: collapse; /* Junta as bordas */
-    margin-top: 50px;
-
     justify-content: center;
 }
 
@@ -69,18 +73,31 @@ td{
 
 #contador{
     background-color: #ffffff;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-;
+
     padding: 20px;
     border: 1px solid white;
     border-radius: 20px;
 }
 
-div#contador > p {
+div#conteudo_contador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div#contador {
     font-weight: bolder;
+    font-size: 20px;
+    color: #317379;
+}
+
+div#contador > p {
+    font-size: 35px;
+
+    margin: 10px
+}
+
+div#contador > div > p {
     font-size: 20px;
     color: #317379;
 }
@@ -117,6 +134,14 @@ p.teste {
     #frase {
         font-size: 20px;
     }
+    div#contador > p{
+        font-size: 20px;
+
+        margin: 10px 0 60px;
+    }
+    div#contador > div > p{
+       font-size: 15px;
+    }
 }
 
 @media (min-width: 600px) {
@@ -133,6 +158,14 @@ p.teste {
     #frase {
         font-size: 30px;
     }
+    div#contador > p{
+        font-size: 20px;
+
+        margin: 0px 0 60px;
+    }
+    div#contador > div > p{
+        font-size: 15px;
+    }
 }
 
 @media (min-width: 900px) {
@@ -148,6 +181,12 @@ p.teste {
     }
     #frase {
         font-size: 40px;
+    }
+    div#contador > p{
+        font-size: 30px;
+    }
+    div#contador > div > p{
+        font-size: 20px;
     }
 }
 
