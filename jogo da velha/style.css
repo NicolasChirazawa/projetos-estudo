@@ -43,7 +43,36 @@ main > div#terceira_parte {
     width: 25%;
 }
 
-/* Mexendo com o CSS da tabela */
+#selecao {
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+#selecao > p {
+    font-weight: bolder;
+    font-size: 20px;
+    color: #317379;
+}
+
+#conteudo_contador > button {
+    background-color: #317379;
+    color: white;
+    
+    font-size: 20px;
+    padding: 8px;
+    margin: 10px 0 10px 0;
+    border: 0;
+    border-radius: 10px;
+}
+
+/* CSS da tabela */
 table {
     border-collapse: collapse; /* Junta as bordas */
     justify-content: center;
@@ -91,12 +120,6 @@ div#contador {
     color: #317379;
 }
 
-div#contador > p {
-    font-size: 35px;
-
-    margin: 10px
-}
-
 div#contador > div > p {
     font-size: 20px;
     color: #317379;
@@ -120,7 +143,7 @@ p.teste {
 
 /* Responsividade */
 
-@media (min-width: 300px) {
+@media (max-width: 300px) {
     td{
         width: 100px;
         height: 100px;
@@ -134,17 +157,16 @@ p.teste {
     #frase {
         font-size: 20px;
     }
-    div#contador > p{
-        font-size: 20px;
 
-        margin: 10px 0 60px;
-    }
-    div#contador > div > p{
-       font-size: 15px;
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
     }
 }
 
-@media (min-width: 600px) {
+@media (max-width: 800px) {
     td {
         width: 120px;
         height: 120px;
@@ -158,17 +180,49 @@ p.teste {
     #frase {
         font-size: 30px;
     }
-    div#contador > p{
-        font-size: 20px;
 
-        margin: 0px 0 60px;
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
     }
-    div#contador > div > p{
-        font-size: 15px;
+
+    div#contador{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 5px;
+    }
+
+    div#conteudo_contador {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    div#conteudo_contador > p{
+        margin: 0 20px 0 20px;
+    }
+
+    #conteudo_contador > button {
+        margin: 0 10px 0 10px;
+    }
+
+    p#frase {
+        margin: 5px 0 5px;
+    }
+    div > p {
+        margin: 10px 0 10px 0
+    }
+
+    div#selecao{
+        padding: 5px 20px 5px 20px;
     }
 }
 
-@media (min-width: 900px) {
+@media (max-width: 1920px) {
     td {
         width: 120px;
         height: 120px;
@@ -182,27 +236,16 @@ p.teste {
     #frase {
         font-size: 40px;
     }
-    div#contador > p{
+
+    div#selecao > p{
+        font-size: 30px;
+    }
+
+    div#contador > p {
         font-size: 30px;
     }
     div#contador > div > p{
         font-size: 20px;
-    }
-}
-
-@media (min-width: 1200px) {
-    td {
-        width: 175px;
-        height: 175px;
-    }
-    p.teste{
-        font-size: 70px;
-    }
-    h1 {
-        font-size: 80px;
-    }
-    #frase {
-        font-size: 50px;
     }
 }
 
