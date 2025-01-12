@@ -1,0 +1,66 @@
+Estudo sobre POO
+
+Classe:
+A classe é uma abstração que unicamente tem a função de moldar um objeto que está sendo instanciado (criado).
+
+    class Inimigo {
+    }
+
+Atributo:
+O atributo é o nome dado as propriades de uma classe.
+
+Método:
+O método é o nome dado a uma função de um objeto.
+
+Construtor:
+O construtor é um método especial de uma classe cuja função, é criar um objeto com os parâmetros dados.
+
+    class Inimigo {
+        constructor(valor){
+            this.valor = valor
+        }
+    }
+
+'.this':
+O '.this' é uma keyword reservada na qual se obtém sempre o valor respectivo daquele objeto não da própria classe.
+
+    class Inimigo {
+        constructor(valor){
+            this.valor = valor
+        }
+    }
+
+    • 'this.valor': Acessa o valor daquele objeto instanciado;
+    • 'valor': Parâmetro passado pelo construtor durante a instância;
+
+extends:
+É uma 'keyword' especial que referencia a uma classe filho que herda características de uma classe pai;
+
+    class Inimigo {
+        constructor(valor){
+            this.name = valor;
+        }
+    }
+
+    class Slime extends Inimigo {
+        constructor(valor, nome){
+            super(valor);
+            this.nome = nome;
+        }
+    }
+
+super:
+É uma 'keyword' especial que indica quais são os atributos da classe pai que estão sendo herdados pelo filho.
+
+    class Inimigo {
+        constructor(valor){
+            this.name = valor;
+        }
+    }
+
+    class Slime extends Inimigo {
+        constructor(valor, nome){
+            super(valor);
+            this.nome = nome;
+        }
+    }
