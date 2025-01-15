@@ -12,14 +12,14 @@
 Um estudo sobre POO feito a partir de um RPG que pode ser jogado por linha de comando.
 Contém um sistema de personagens que possuem vida e stamina, como um sistema de batalha.
 
-![[Screenshot_3.png]]
+![Imagem-3](https://raw.githubusercontent.com/NicolasChirazawa/projetos-estudo/refs/heads/main/read-me/Screenshot_3.png)
 
 <h1 id='desafio-ponto'>Desafio Ponto</h1>
 <h3>✅ Completo</h3>
 
 Desafio simples onde um clique coloca um ponto na tela, a seta a esquerda retira o último clique sucessivamente, e a seta direita, os recoloca. Um meio de estudar funcionamento e implementação de uma pilha.
 
-![[Screenshot_2.png]]
+![Imagem=2](https://github.com/NicolasChirazawa/projetos-estudo/blob/main/read-me/Screenshot_2.png?raw=true)
 
 <h1 id='jogo-da-velha'>Jogo da velha</h1>
 <h3>🔒 Incompleto</h3>
@@ -27,5 +27,4 @@ Desafio simples onde um clique coloca um ponto na tela, a seta a esquerda retira
 Jogo da velha em um website, todo o sistema de vitória, derrota e empate está implementado.
 Também possui um sistema de score, apenas ficou faltando a implementação de uma cpu contra o player.
 
-<img><img>![[Screenshot_1.png]]
-
+![Imagem-1](https://github.com/NicolasChirazawa/projetos-estudo/blob/main/read-me/Screenshot_1.png?raw=true)
