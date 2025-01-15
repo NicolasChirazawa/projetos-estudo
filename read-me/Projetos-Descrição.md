@@ -1,4 +1,4 @@
-![Badge][https://img.shields.io/static/v1?label=Linguagem&message=Javascript&color=F7DF1E&style=for-the-badge&logo=javascript]
+![Badge](https://img.shields.io/static/v1?label=Linguagem&message=Javascript&color=F7DF1E&style=for-the-badge&logo=javascript)
 
 <p align="center"> 
 	<a href=#rpg>RPG</a> •
