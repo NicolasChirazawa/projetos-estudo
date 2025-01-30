@@ -1,0 +1,35 @@
+O Javascript é executado numa ordem linear, a 1° linha, depois a 2°, e assim em diante. Porém, caso um processo demande tempo, é interessante quebrar com essa linearidade. Alguns dos processos que podem pedir um tempo de resposta, que não depende propriamente do código é a leitura de um arquivo, e, bastante famoso, a API Request.
+
+Promise:
+A Promise é o resultado de uma função assíncrona. Como o próprio nome implica, uma 'Promise' promete algo;
+
+Ela apresenta três estados possíveis:
+• <Pending>: Em processamento;
+• <Fullfied>: Operação concluída com sucessão;
+• <Rejected>: Rejeitado por algum motivo,;
+
+Async / Await:
+A função assíncrona nasceu com o objetivo de simplificar a escrita do código assíncrono. Este, como uma extensão de 'Promises', sempre irá retornar uma 'Promise';
+
+fetch():
+Método para a busca de um recurso na rede;
+
+Utilização de todos os conceitos superiores juntos
+O fetch() pode se utilizar de dois métodos '.then()' para promessas aceitas, e o .catch() para promessas rejeitadas.
+
+Ou seja, um fetch utiliza de uma estrutura como esta:
+
+        fetch(url)
+        .then(function() {
+
+        })
+        .catch(function() {
+
+        });
+
+Material de referência:
+
+• Como usar a Fetch API do JavaScript para buscar dados (https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data-pt);
+• Utilizando a Fetch API em JavaScript (https://www.dio.me/articles/utilizando-a-fetch-api-em-javascript);
+• JavaScript Assíncrono: Async, Await e Promises (https://blog.rocketseat.com.br/javascript-async-await-promises/);
+• fetch() (https://developer.mozilla.org/pt-BR/docs/Web/API/Window/fetch);

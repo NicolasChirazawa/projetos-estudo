@@ -1,0 +1,241 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    border: 0px;
+    margin: 0px;
+
+    background-color: #050912;;
+}
+
+p {
+    cursor: default;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+header {
+    background-color: #25366e;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 10px 0 10px 0;
+    margin: 0px;
+    border: 0px;
+}
+
+header > div > img {
+    background-color: #0b1939;
+    
+    width: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #ffffff8f
+}
+
+div#content {
+    background-color: #6571c1;
+
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+
+    padding-bottom: 20px;
+}
+
+div#content >  p {
+    font-size: 45px;
+    color: white; 
+    
+}
+
+div#content > div#inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+div#api {
+    margin-bottom: 8px;
+}
+
+div#api > input {
+    font-size: 11px;
+
+    width: 170px;
+
+    padding: 4px;
+    border: 3px solid #050912b7;
+    border-right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+div#api > button {
+    color: transparent;
+    text-shadow: 0 0 0 #050912b7;
+    
+    background-color: white;
+    width: 30px;
+    height: 26px;
+
+    cursor: pointer;
+
+    border: 3px solid #050912b7;
+    border-left: 0;
+    border-radius: 0px 5px 5px 0;
+}
+
+div#city > input {
+    font-size: 25px;
+
+    width: 600px;
+
+    padding: 10px;
+    border: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+div#city > button {
+    color: transparent;
+    text-shadow: 0 0 0 white;
+    
+    background-color: #25366e;
+
+    font-size: 20px;
+    width: 60px;
+    height: 49px;
+
+    cursor: pointer;
+
+    border: 2px solid white;
+    border-radius: 0px 10px 10px 0;
+}
+
+div#city > img {
+    width: 200px;
+}
+
+input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+div#error_div{
+    width: 100%;
+    background-color: #712727;
+
+    display: flex;
+    justify-content: center;
+}
+
+div#error_div > p {
+    font-size: 25px;
+    color: white;
+
+    text-align: center;
+}
+
+div#weather_div {
+    width: 100%;
+    background-color: #A2B4FA;
+
+    display: flex;
+    justify-content: center;
+}
+
+div#weather_div > div#panelWeather {
+    background-color: rgba(255, 255, 255, 0.445) ;
+
+    padding: 15px;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+div#firstLayer{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: 10px;
+}
+
+div#firstLayer > p {
+    font-size: 12px;
+    margin: 0;
+}
+
+div#secondLayer > img {
+    width: 80px;
+}
+
+div#secondLayer > p {
+    font-size: 35px;
+    
+    margin-bottom: 15px;
+}
+
+div#thirdLayer > p {
+    margin-top: 0;
+}
+
+footer {
+    background-color: #050912;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 0 40px 0;
+}
+
+footer > div {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 40px 0 40px;
+}
+
+footer > div > img {
+    width: 150px;
+
+    margin-bottom: 20px;
+}
+
+footer > div > div > img#icon {
+    width: 30px;
+    margin: 0 5px 0 5px;
+
+    cursor: pointer;
+}
+
+footer > div > p {
+    font-size: 10px;
+    color: white;
+
+    margin: 5px 0 5px 0;
+}
+
+footer > div > div {
+    font-size: 10px;
+    color: white;
+
+    margin: 5px 0 5px 0;
+}
+
+footer > div > div > p.terms {
+    margin: 0 3px 0 3px;
+}
+
+footer > div > div > p.terms:hover {
+    text-decoration: underline white;
+}
