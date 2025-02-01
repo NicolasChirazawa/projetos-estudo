@@ -146,6 +146,29 @@ function resetDiv(){
     }
 }
 
+function translationError(error_data){
+    switch (error_data.error.code){
+        case 1002:
+            error_data.error.message = 'Não foi preenchido a chave da API.';
+            break;
+        case 1003:
+            error_data.error.message = 'O local não foi preenchido.';
+            break;
+        case 1006:
+            error_data.error.message = 'Não foi encontrado nenhum local igual ao preenchido.';
+            break;
+        case 2006:
+            error_data.error.message = 'A chave API preenchida é inválida.';
+            break;
+        case 2007:
+            error_data.error.message = 'Foi excedido o limite de requisições com essa chave.';
+            break;
+        case 2008:
+            error_data.error.message = 'A chave API foi desabilitada.';
+            break;
+    }
+}
+
 async function showInformation() {
     resetDiv();
 
@@ -167,6 +190,7 @@ async function showInformation() {
         newDiv.id = 'error_div';
 
         error_data = data[0];
+        translationError(error_data);
         createDivError(error_data);
     }
 }
