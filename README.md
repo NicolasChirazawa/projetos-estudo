@@ -8,7 +8,7 @@
 <h1 id='weather-api'>Weather API (1.0.0)</h1>
 <h3>✅ Completo</h3>
 
-Projeto que envolve o uso da API do site (https://www.weatherapi.com/my/).
+Projeto que envolve o uso da API do site (https://www.weatherapi.com/my/). <br>
 Foi construído um site simples que dispõem o clima, uma descrição e a temperatura de uma cidade ao redor do globo.
 
 ![Imagem-4](https://raw.githubusercontent.com/NicolasChirazawa/projetos-estudo/refs/heads/main/read-me/Screenshot_4.png)
