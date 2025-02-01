@@ -1,7 +1,7 @@
 <p align="center"> 
 	<a href=#rpg>RPG</a> •
 	<a href=#desafio-ponto>Desafio Ponto</a> •
-	<a href=#jogo-da-velha>Jogo Da Velha</a>
+	<a href=#jogo-da-velha>Jogo Da Velha</a> •
 	<a href=#weather-api>Weather API</a>
 </p>
 
