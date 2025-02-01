@@ -49,7 +49,7 @@ async function requestInformations(city, api_key){
             city: data.location.name,
             temperature: data.current.temp_c + '°C',
             state: data.current.condition.text,
-            icon: data.current.condition.icon
+            icon: 'http:' + data.current.condition.icon,
         }
     } catch (e) {
         console.error(e);
