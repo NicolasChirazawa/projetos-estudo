@@ -98,9 +98,7 @@ function calcularProximoDia(data){
 }
 
 function verificacaoData(data) {
-    let erro;
-    let codigo_erro = '';
-    let deuErro = false;
+    let codigo_erro;
 
     // Pega o dia de hoje
     let dia_atual = new Date().toLocaleString();
@@ -113,33 +111,45 @@ function verificacaoData(data) {
     let segunda_data = Number(data.data_final.split('-').join(''));
 
     if(dia_atual < primeira_data) {
-        codigo_erro = 1;
-        deuErro = true;
+        codigo_erro = '001';
 
     } else if(dia_atual < segunda_data) {
-        codigo_erro = 2;
-        deuErro = true;
+        codigo_erro = '002';
     
-    }else if(primeira_data > segunda_data) {
-        codigo_erro = 3;
-        deuErro = true;
+    } else if(primeira_data > segunda_data) {
+        codigo_erro = '003';
     }
 
-    if(deuErro == true){
-        erro = new Erro(codigo_erro);
-        return erro;
-    }
+    let erro;
 
-    return ''
+    try {
+        if(codigo_erro != undefined){
+            erro = new Erro(codigo_erro);
+            throw new Error(erro);
+        }
+        return false;
+
+    } catch {
+        console.log(erro.lancarMensagem());
+        return true;
+    }
 }
 
 function verificacaoAcaoResultado(dados_brutos) {
-    let codigo_erro = 4;
+    let codigo_erro;
+    let erro;
 
-    if(dados_brutos.quotes.length == 0){
-        return new Erro(codigo_erro);
-    } else {
-        return '';
+    try{
+        if(dados_brutos.quotes.length == 0){
+            codigo_erro = '011';
+            erro = new Erro(codigo_erro)
+            throw new Error(erro);
+        }
+    
+        return true;
+    } catch {
+        console.log(erro.lancarMensagem());
+        return true;
     }
 }
 
@@ -201,48 +211,46 @@ function tratarDados(dados_brutos){
 }
 
 async function extrairInformacoes(){
-    let erro = '';
 
-    try{
-        const codigo_acao = 'AAPL';
-    
-        const data = {
-            // Ano, mês, dia
-            data_inicial: '2025-01-03',
-            data_final: '2025-01-03'
-        }
+    const codigo_acao = 'AAPL';
 
-        // De acordo com a documentação da API, o dia inicial e final não podem ser iguais. Por conta disso, é necessário pular um dia;
-        // A condição é mais intuitiva para o usuário;
-        if(data.data_inicial == data.data_final){
-            data.data_final = calcularProximoDia(data);
-        }
-
-        // Verifica se as datas inseridas são válidas
-        erro = verificacaoData(data);
-        if(typeof erro == 'object'){
-            throw new Error(erro);
-        }
-
-        let periodo = {period1: data.data_inicial, period2: data.data_final};
-        const dados_brutos = await yahooFinance.chart(codigo_acao, periodo);
-
-        // Verifica se foi obtido um resultado
-        erro = verificacaoAcaoResultado(dados_brutos);
-        if(typeof erro === 'object'){
-            throw new Error(erro);
-        }
-
-        dados_tratados = tratarDados(dados_brutos);
-
-        // Caso queira converter para dólar
-        let converter_dolar = true;
-    
-        if(converter_dolar){
-            await cotacaoDolar(dados_tratados, data);
-        }
-    } catch {
-        console.log(erro.lancarMensagem());
+    const data = {
+        // Ano, mês, dia
+        data_inicial: '2025-01-03',
+        data_final: '2025-01-03'
     }
+
+    // De acordo com a documentação da API, o dia inicial e final não podem ser iguais. Por conta disso, é necessário pular um dia;
+    // Condição mais intuitiva para o usuário;
+    if(data.data_inicial == data.data_final){
+        data.data_final = calcularProximoDia(data);
+    }
+
+    // Verifica se as datas inseridas são válidas
+    let dataInvalida = verificacaoData(data);
+    if(dataInvalida == true){
+        return;
+    }
+
+    let periodo = {period1: data.data_inicial, period2: data.data_final};
+    const dados_brutos = await yahooFinance.chart(codigo_acao, periodo);
+
+    // Verifica se foi obtido um resultado
+    let naoEncontrouAcoes = verificacaoAcaoResultado(dados_brutos);
+    if(naoEncontrouAcoes == true){
+        return;
+    }
+
+    /*
+    dados_tratados = tratarDados(dados_brutos);
+
+    // Caso queira converter para dólar
+    let converter_dolar = true;
+
+    if(converter_dolar){
+        await cotacaoDolar(dados_tratados, data);
+    }
+    */
+
 }
 extrairInformacoes();
