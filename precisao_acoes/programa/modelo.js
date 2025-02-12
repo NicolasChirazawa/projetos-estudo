@@ -13,11 +13,13 @@ class Erro {
     constructor(codigo){
         this.codigo = codigo;
         this.mensagem = {
-            1: 'A data inicial é maior que a data atual.',
-            2: 'A data final é maior que a data atual.',
-            3: 'A data inicial é maior a data final.',
-            4: 'Não foi achado nenhuma ação dentro do código e período inserido',
-            5: 'Não foi possível converter a moeda para real'
+            // 00x: Inputs inválidos
+            '001': 'A data inicial é maior que a data atual.',
+            '002': 'A data final é maior que a data atual.',
+            '003': 'A data inicial é maior a data final.',
+            '004': 'Não foi achado nenhuma ação dentro do código e período inserido',
+            // 01x: Dados impossíveis de serem retornados
+            '011': 'Não foi possível converter a moeda para real'
         }
     }
 
