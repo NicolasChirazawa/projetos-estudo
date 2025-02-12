@@ -1,5 +1,5 @@
-const { cotacaoDolar } = require('./opcionais.js');
-const { cotacaoDia, Erro } =  require('./modelo.js')
+const { cotacaoDolar } = require('./funcoes_opcionais.js');
+const { cotacaoDia, Erro } =  require('./classes.js')
 const yahooFinance = require('yahoo-finance2').default;
 
 function calcularProximoDia(data){

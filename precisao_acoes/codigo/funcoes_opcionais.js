@@ -1,4 +1,4 @@
-const { Erro } =  require('./modelo.js')
+const { Erro } =  require('./classes.js')
 
 function ajustarDataCotacaoAPI(data){
     // É necessário ajustar o formato da data
