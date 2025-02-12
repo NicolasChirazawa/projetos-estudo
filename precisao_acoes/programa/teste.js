@@ -145,8 +145,7 @@ function verificacaoAcaoResultado(dados_brutos) {
             erro = new Erro(codigo_erro)
             throw new Error(erro);
         }
-    
-        return true;
+        return false;
     } catch {
         console.log(erro.lancarMensagem());
         return true;
@@ -159,6 +158,7 @@ function tratarDados(dados_brutos){
 
     for(let i = 0; i < dados_brutos.quotes.length; i++){
 
+        // Monta a estrutura para tratar os dados coletados pela API
         const dados_estruturados = [
             dados_brutos.quotes[i].date,
             String(dados_brutos.quotes[i].high), 
@@ -167,25 +167,11 @@ function tratarDados(dados_brutos){
             String(dados_brutos.quotes[i].close),
             String(dados_brutos.quotes[i].volume)
         ];
-            
-        // Tratar data
-        let dia = dados_estruturados[0].getDate();
-        let mes = (dados_estruturados[0].getMonth() + 1);
-        let ano = dados_estruturados[0].getFullYear();
-
-        if(dia < 10) {
-            dia = '0' + dia;
-        }
-        if(mes < 10){
-            mes = '0' + mes;
-        }
-
-        dados_estruturados[0] = dia + '-' + mes + '-' + ano;
-    
+        
         // Tratar números com decimais, começa no 1 pois não mexe em data.
         for(let i = 1; i < (QUANTIDADE_OPERACOES + 1); i++){
             let numeroDecimal = false
-
+    
             // Descobrir se o número é quebrado
             for(let j = 0; j < dados_estruturados[i]; j++){
                 if(dados_estruturados[i][j] == '.'){
@@ -196,14 +182,29 @@ function tratarDados(dados_brutos){
                     dados_estruturados[i] = dados_estruturados[i] + '.00';
                 }
             }
-
+    
+            // Pegar duas casas decimais
             if(numeroDecimal == true){
                 let tratamento = dados_estruturados[i].split('.');
-                // Pegar duas casas decimais
                 tratamento[1] = tratamento[1].slice(0, 2);
                 dados_estruturados[i] = tratamento.join('.');
             }
         }
+
+        // Tratar a data
+        let dia = dados_estruturados[0].getDate();
+        let mes = (dados_estruturados[0].getMonth() + 1);
+        let ano = dados_estruturados[0].getFullYear();
+
+        // Acrescenta o leading zero
+        if(dia < 10) {
+            dia = '0' + dia;
+        }
+        if(mes < 10){
+            mes = '0' + mes;
+        }
+
+        dados_estruturados[0] = dia + '-' + mes + '-' + ano;
     
         dados_tratados.push(new cotacaoDia(dados_estruturados[0], dados_estruturados[1], dados_estruturados[2], dados_estruturados[3], dados_estruturados[4], dados_estruturados[5]));
     }
@@ -217,7 +218,7 @@ async function extrairInformacoes(){
     const data = {
         // Ano, mês, dia
         data_inicial: '2025-01-03',
-        data_final: '2025-01-03'
+        data_final: '2025-01-31'
     }
 
     // De acordo com a documentação da API, o dia inicial e final não podem ser iguais. Por conta disso, é necessário pular um dia;
@@ -235,22 +236,18 @@ async function extrairInformacoes(){
     let periodo = {period1: data.data_inicial, period2: data.data_final};
     const dados_brutos = await yahooFinance.chart(codigo_acao, periodo);
 
-    // Verifica se foi obtido um resultado
     let naoEncontrouAcoes = verificacaoAcaoResultado(dados_brutos);
     if(naoEncontrouAcoes == true){
         return;
     }
 
-    /*
     dados_tratados = tratarDados(dados_brutos);
-
+    
     // Caso queira converter para dólar
     let converter_dolar = true;
 
     if(converter_dolar){
         await cotacaoDolar(dados_tratados, data);
     }
-    */
-
 }
 extrairInformacoes();
