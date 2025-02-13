@@ -1,4 +1,4 @@
-const { cotacaoDolar } = require('./funcoes_opcionais.js');
+const { converterDolar } = require('./funcoes_opcionais.js');
 const { cotacaoDia, Erro } =  require('./classes.js')
 const yahooFinance = require('yahoo-finance2').default;
 
@@ -135,12 +135,12 @@ function verificacaoData(data) {
     }
 }
 
-function verificacaoAcaoResultado(dados_brutos) {
+function verificacaoAcaoResultado(dados_brutos_acoes) {
     let codigo_erro;
     let erro;
 
     try{
-        if(dados_brutos.quotes.length == 0){
+        if(dados_brutos_acoes.quotes.length == 0){
             codigo_erro = '011';
             erro = new Erro(codigo_erro)
             throw new Error(erro);
@@ -152,20 +152,20 @@ function verificacaoAcaoResultado(dados_brutos) {
     }
 }
 
-function tratarDados(dados_brutos){
+function tratarDados(dados_brutos_acoes){
     const QUANTIDADE_OPERACOES = 4; 
-    let dados_tratados = [];
+    let dados_tratados_acoes = [];
 
-    for(let i = 0; i < dados_brutos.quotes.length; i++){
+    for(let i = 0; i < dados_brutos_acoes.quotes.length; i++){
 
         // Monta a estrutura para tratar os dados coletados pela API
         const dados_estruturados = [
-            dados_brutos.quotes[i].date,
-            String(dados_brutos.quotes[i].high), 
-            String(dados_brutos.quotes[i].low), 
-            String(dados_brutos.quotes[i].open),
-            String(dados_brutos.quotes[i].close),
-            String(dados_brutos.quotes[i].volume)
+            dados_brutos_acoes.quotes[i].date,
+            String(dados_brutos_acoes.quotes[i].high), 
+            String(dados_brutos_acoes.quotes[i].low), 
+            String(dados_brutos_acoes.quotes[i].open),
+            String(dados_brutos_acoes.quotes[i].close),
+            String(dados_brutos_acoes.quotes[i].volume)
         ];
         
         // Tratar números com decimais, começa no 1 pois não mexe em data.
@@ -206,9 +206,9 @@ function tratarDados(dados_brutos){
 
         dados_estruturados[0] = dia + '-' + mes + '-' + ano;
     
-        dados_tratados.push(new cotacaoDia(dados_estruturados[0], dados_estruturados[1], dados_estruturados[2], dados_estruturados[3], dados_estruturados[4], dados_estruturados[5]));
+        dados_tratados_acoes.push(new cotacaoDia(dados_estruturados[0], dados_estruturados[1], dados_estruturados[2], dados_estruturados[3], dados_estruturados[4], dados_estruturados[5]));
     }
-    return dados_tratados;
+    return dados_tratados_acoes;
 }
 
 async function extrairInformacoes(){
@@ -218,7 +218,7 @@ async function extrairInformacoes(){
     const data = {
         // Ano, mês, dia
         data_inicial: '2025-01-03',
-        data_final: '2025-01-31'
+        data_final: '2025-01-05'
     }
 
     // De acordo com a documentação da API, o dia inicial e final não podem ser iguais. Por conta disso, é necessário pular um dia;
@@ -229,25 +229,21 @@ async function extrairInformacoes(){
 
     // Verifica se as datas inseridas são válidas
     let dataInvalida = verificacaoData(data);
-    if(dataInvalida == true){
-        return;
-    }
+    if(dataInvalida == true){ return }
 
     let periodo = {period1: data.data_inicial, period2: data.data_final};
-    const dados_brutos = await yahooFinance.chart(codigo_acao, periodo);
+    const dados_brutos_acoes = await yahooFinance.chart(codigo_acao, periodo);
 
-    let naoEncontrouAcoes = verificacaoAcaoResultado(dados_brutos);
-    if(naoEncontrouAcoes == true){
-        return;
-    }
+    let naoEncontrouAcoes = verificacaoAcaoResultado(dados_brutos_acoes);
+    if(naoEncontrouAcoes == true){ return }
 
-    dados_tratados = tratarDados(dados_brutos);
+    let dados_tratados_acoes = tratarDados(dados_brutos_acoes);
     
     // Caso queira converter para dólar
     let converter_dolar = true;
 
     if(converter_dolar){
-        await cotacaoDolar(dados_tratados, data);
+        let conversaoValida = await converterDolar(dados_tratados_acoes, data);
     }
 }
 extrairInformacoes();
