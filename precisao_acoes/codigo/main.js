@@ -165,7 +165,8 @@ function tratarDados(dados_brutos_acoes){
             String(dados_brutos_acoes.quotes[i].low), 
             String(dados_brutos_acoes.quotes[i].open),
             String(dados_brutos_acoes.quotes[i].close),
-            String(dados_brutos_acoes.quotes[i].volume)
+            String(dados_brutos_acoes.quotes[i].volume),
+            String(dados_brutos_acoes.quotes[i].sigla)
         ];
         
         // Tratar números com decimais, começa no 1 pois não mexe em data.
@@ -205,25 +206,13 @@ function tratarDados(dados_brutos_acoes){
         }
 
         dados_estruturados[0] = dia + '-' + mes + '-' + ano;
-    
-        dados_tratados_acoes.push(new cotacaoDia(dados_estruturados[0], dados_estruturados[1], dados_estruturados[2], dados_estruturados[3], dados_estruturados[4], dados_estruturados[5]));
+
+        // Define como dólar
+        dados_estruturados[dados_estruturados.length - 1] = '$'
+
+        dados_tratados_acoes.push(new cotacaoDia(dados_estruturados[0], dados_estruturados[1], dados_estruturados[2], dados_estruturados[3], dados_estruturados[4], dados_estruturados[5], dados_estruturados[6]));
     }
     return dados_tratados_acoes;
-}
-
-function adicionarSigla(dados_tratados_acoes, conversao) {
-    let quantidade = dados_tratados_acoes.length;
-    let sigla;
-
-    if(conversao == true){
-        sigla = 'R$'
-    } else {
-        sigla = '$'
-    }
-
-    for(let i = 0; i < quantidade; i++) {
-        dados_tratados_acoes[i].sigla = sigla; 
-    }
 }
 
 async function extrairInformacoes(){
@@ -233,7 +222,7 @@ async function extrairInformacoes(){
     const data = {
         // Ano, mês, dia
         data_inicial: '2025-01-03',
-        data_final: '2025-01-31'
+        data_final: '2025-01-05'
     }
 
     // De acordo com a documentação da API, o dia inicial e final não podem ser iguais. Por conta disso, é necessário pular um dia;
@@ -258,10 +247,7 @@ async function extrairInformacoes(){
     let convercao_real = true;
 
     if(convercao_real){
-        let conversaoValida = await converterDolar(dados_tratados_acoes, data);
-        adicionarSigla(dados_tratados_acoes, conversaoValida)
-    } else {
-        adicionarSigla(dados_tratados_acoes, convercao_real);
+        await converterDolar(dados_tratados_acoes, data);
     }
 
     console.log(dados_tratados_acoes)

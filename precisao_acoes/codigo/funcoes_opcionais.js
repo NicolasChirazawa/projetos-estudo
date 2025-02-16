@@ -31,7 +31,7 @@ function verificacaoCotacaoResultado(dados_brutos_cotacao) {
     }
 }
 
-function tratarDadosConversaoDolar (dados_brutos_cotacao, dados_tratados_cotacao, codigo_data_cotacao){ 
+function tratarDadosConversaoDolar(dados_brutos_cotacao, dados_tratados_cotacao, codigo_data_cotacao){ 
 
     for(let i = 0; i < dados_brutos_cotacao.value.length; i++){   
 
@@ -62,7 +62,7 @@ function encontrarDataDolar(dados_tratados_cotacao, codigo_data_cotacao, dados_a
     return data_cotacao;
 }
 
-function converterAcaoDolar(dados_acoes, data_cotacao){
+function converterAcaoReal(dados_acoes, data_cotacao){
     for(let i = 0; i < dados_acoes.length; i++) {
 
         // Obtem o resultado convertido
@@ -81,6 +81,7 @@ function converterAcaoDolar(dados_acoes, data_cotacao){
         dados_acoes[i].baixa = dado_baixa_nao_tratado[0] + '.' + dado_baixa_nao_tratado[1].slice(0, 2);
         dados_acoes[i].abertura = dado_abertura_nao_tratado[0] + '.' + dado_abertura_nao_tratado[1].slice(0, 2);
         dados_acoes[i].fechamento = dado_fechamento_nao_tratado[0] + '.' + dado_fechamento_nao_tratado[1].slice(0, 2);
+        dados_acoes[i].sigla = 'R$';
     }
 }
 
@@ -94,7 +95,7 @@ async function converterDolar(dados_acoes, data) {
     let dados_brutos_cotacao = await pesquisa_cotacao_api.json();
 
     let naoEncontrouCotacao = verificacaoCotacaoResultado(dados_brutos_cotacao);
-    if(naoEncontrouCotacao == true) { return false }
+    if(naoEncontrouCotacao == true) { return }
 
     let dados_tratados_cotacao = {};
     let codigo_data_cotacao = [];
@@ -106,8 +107,9 @@ async function converterDolar(dados_acoes, data) {
     // Pega o primeiro resultado disponível (sempre haverá, foi feito o teste 'verificacaoCotacaoResultado()' para confirmar).
     if(data_cotacao == '') { data_cotacao = dados_brutos_cotacao.value[0].cotacaoCompra }
 
-    converterAcaoDolar(dados_acoes, data_cotacao);
+    converterAcaoReal(dados_acoes, data_cotacao);
 
-    return true;
+    return;
 }
+
 module.exports = { converterDolar }

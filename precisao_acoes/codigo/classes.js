@@ -1,11 +1,12 @@
 class cotacaoDia {
-    constructor(data, alta, baixa, abertura, fechamento, volume){
+    constructor(data, alta, baixa, abertura, fechamento, volume, sigla){
         this.data = data;
         this.alta = alta;
         this.baixa = baixa;
         this.abertura = abertura;
         this.fechamento = fechamento;
         this.volume = volume;
+        this.sigla = sigla;
     }
 }
 
