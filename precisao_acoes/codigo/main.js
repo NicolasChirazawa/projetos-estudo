@@ -211,6 +211,21 @@ function tratarDados(dados_brutos_acoes){
     return dados_tratados_acoes;
 }
 
+function adicionarSigla(dados_tratados_acoes, conversao) {
+    let quantidade = dados_tratados_acoes.length;
+    let sigla;
+
+    if(conversao == true){
+        sigla = 'R$'
+    } else {
+        sigla = '$'
+    }
+
+    for(let i = 0; i < quantidade; i++) {
+        dados_tratados_acoes[i].sigla = sigla; 
+    }
+}
+
 async function extrairInformacoes(){
 
     const codigo_acao = 'AAPL';
@@ -218,7 +233,7 @@ async function extrairInformacoes(){
     const data = {
         // Ano, mês, dia
         data_inicial: '2025-01-03',
-        data_final: '2025-01-05'
+        data_final: '2025-01-31'
     }
 
     // De acordo com a documentação da API, o dia inicial e final não podem ser iguais. Por conta disso, é necessário pular um dia;
@@ -238,12 +253,17 @@ async function extrairInformacoes(){
     if(naoEncontrouAcoes == true){ return }
 
     let dados_tratados_acoes = tratarDados(dados_brutos_acoes);
-    
-    // Caso queira converter para dólar
-    let converter_dolar = true;
 
-    if(converter_dolar){
+    // Caso queira converter para dólar
+    let convercao_real = true;
+
+    if(convercao_real){
         let conversaoValida = await converterDolar(dados_tratados_acoes, data);
+        adicionarSigla(dados_tratados_acoes, conversaoValida)
+    } else {
+        adicionarSigla(dados_tratados_acoes, convercao_real);
     }
+
+    console.log(dados_tratados_acoes)
 }
 extrairInformacoes();
