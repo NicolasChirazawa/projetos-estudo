@@ -17,9 +17,6 @@ Foi construído um site simples que dispõem o clima, uma descrição e a temper
 ![Badge-4](https://img.shields.io/static/v1?label=Linguagem&message=Javascript&color=F7DF1E&style=for-the-badge&logo=javascript)
 ![Badge1](https://img.shields.io/static/v1?label=Linguagem&message=Node.js&color=5FA04E&style=for-the-badge&logo=Node.js)
 
-<h1 id='desafio-ponto'>Desafio Ponto</h1>
-<h3>✅ Completo</h3>
-
 <h1 id='rpg'>RPG (1.0.0)</h1>
 <h3>🚧 Em desenvolvimento</h3>
 
